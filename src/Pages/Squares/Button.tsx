@@ -5,10 +5,13 @@ interface Props {
   onClick: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const Square: FC<Props> = ({ children, onClick }) => {
+const Button: FC<Props> = ({ children, onClick }) => {
   return (
     <div
-      onClick={onClick}
+      onClick={e => {
+        e.stopPropagation();
+        onClick(e);
+      }}
       style={{
         width: 40,
         height: 40,
@@ -18,6 +21,7 @@ const Square: FC<Props> = ({ children, onClick }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        cursor: "pointer",
       }}
     >
       {children}
@@ -25,4 +29,4 @@ const Square: FC<Props> = ({ children, onClick }) => {
   );
 };
 
-export default Square;
+export default Button;

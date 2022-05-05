@@ -7,23 +7,28 @@ interface Props {
   values: number[];
   sensitivityX: number;
   sensitivityY: number;
+  sensitivityPhi: number;
   isDragging: boolean;
-  style: { border: string; background: string };
+  style: { border: string; backgroundColor: string };
 }
 
-const Square: FC<Props> = ({ i, j, size, values, sensitivityX, sensitivityY, isDragging, style }) => {
+const INITIAL_OFFSET = 0.3;
+
+const Square: FC<Props> = ({ i, j, size, values, sensitivityX, sensitivityY, sensitivityPhi, isDragging, style }) => {
+  const customStyle = values[0] > 0.98 ? { backgroundColor: "#ff000088" } : { backgroundColor: "#00000000" };
+
   return (
     <div
       style={{
         position: "absolute",
-        transition: isDragging ? "none" : "transform 400ms",
+        transition: isDragging ? "none" : "all 800ms",
         transform: `
         
-              translateX(${i * size + values[0] * (j + 0.3) * sensitivityX}px)
+              translateX(${i * size + values[0] * (j + (INITIAL_OFFSET * sensitivityX) / 4) * sensitivityX}px)
               
-              translateY(${j * size + values[1] * (j + 0.3) * sensitivityY}px)
+              translateY(${j * size + values[1] * (j + (INITIAL_OFFSET * sensitivityY) / 4) * sensitivityY}px)
 
-              rotate(${values[2] * (j + 0.3)}deg)
+              rotate(${values[2] * (j + (INITIAL_OFFSET * sensitivityPhi) / 4) * 2 * sensitivityPhi}deg)
 
               `,
         // left: (i * size + values[0] * (j + 0.3)) * sensitivityX,
@@ -31,6 +36,7 @@ const Square: FC<Props> = ({ i, j, size, values, sensitivityX, sensitivityY, isD
         width: size - 1,
         height: size - 1,
         ...style,
+        ...customStyle,
         // border: "1px solid transparent",
         // background: "#ff000088",
       }}

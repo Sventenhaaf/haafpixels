@@ -1,11 +1,11 @@
 const PADDING = 5;
-export const SQUARES_WIDTH = 12;
-export const SQUARES_HEIGHT = 22;
+// export const SQUARES_WIDTH = 22;
+// export const SQUARES_HEIGHT = 12;
 
 export const BUTTONS_HEIGHT = 100;
 
-export const getDimenstions = () => {
-  const maxWidth = Math.min(window.innerWidth - 2 * PADDING, 300);
+export const getDimenstions = (SQUARES_WIDTH: number, SQUARES_HEIGHT: number) => {
+  const maxWidth = Math.min(window.innerWidth - 2 * PADDING, 1000);
   const maxHeight = window.innerHeight - 2 * PADDING - BUTTONS_HEIGHT;
 
   let width = 0,

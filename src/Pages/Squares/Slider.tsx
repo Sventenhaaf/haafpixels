@@ -14,23 +14,27 @@ const Slider: FC<Props> = ({ value, onChange, setIsDragging }) => {
   };
 
   const onMouseUp = () => {
-    // console.log("release");
     document.body.style.overflow = "scroll";
     setIsDragging(false);
   };
+
   return (
     <div style={{ width: "100%" }}>
       <input
         //
         type="range"
-        min="1"
+        min="0"
         max="100"
         value={value}
-        onChange={e => onChange(+e.target.value)}
+        onChange={e => {
+          e.stopPropagation();
+          onChange(+e.target.value);
+        }}
         className="slider"
         id="myRange"
         onInput={onInput}
         onTouchEnd={onMouseUp}
+        onMouseUp={onMouseUp}
       />
     </div>
   );
