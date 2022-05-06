@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Home, New, Squares, Writing } from "./Pages";
+import { Home, Iterations, New, Squares, Writing } from "./Pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App: React.FC<{}> = () => {
@@ -11,6 +11,7 @@ const App: React.FC<{}> = () => {
         <Route path="/squares" element={<Squares />} />
         <Route path="/writing" element={<Writing />} />
         <Route path="/new" element={<New />} />
+        <Route path="/iterations" element={<Iterations />} />
       </Routes>
     </BrowserRouter>
   );
