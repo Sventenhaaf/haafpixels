@@ -15,13 +15,14 @@ interface Props {
 const INITIAL_OFFSET = 0.3;
 
 const Square: FC<Props> = ({ i, j, size, values, sensitivityX, sensitivityY, sensitivityPhi, isDragging, style }) => {
-  const customStyle = values[0] > 0.98 ? { backgroundColor: "#ff000088" } : { backgroundColor: "#00000000" };
+  const zIndex = Math.round(Math.random() * 1000);
+  const customStyle = values[0] > 0.98 ? { backgroundColor: "#ff8888", zIndex } : { backgroundColor: "#ffffff00", zIndex };
 
   return (
     <div
       style={{
         position: "absolute",
-        transition: isDragging ? "none" : "all 800ms",
+        transition: isDragging ? "none" : "transform 1800ms, background-color 1800ms",
         transform: `
         
               translateX(${i * size + values[0] * (j + (INITIAL_OFFSET * sensitivityX) / 4) * sensitivityX}px)

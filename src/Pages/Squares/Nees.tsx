@@ -62,7 +62,7 @@ const Nees: FC<Props> = ({}) => {
     if (style.backgroundColor === "none") {
       setStyle({ border: "none", backgroundColor: "#ff000088" });
     } else {
-      setStyle({ border: "1px solid black", backgroundColor: "none" });
+      setStyle({ border: "1px solid black", backgroundColor: "white" });
     }
   };
 
@@ -109,6 +109,7 @@ const Nees: FC<Props> = ({}) => {
           left: 0,
           right: 0,
           bottom: 0,
+          zIndex: 1001,
         }}
         onClick={e => {
           e.stopPropagation();
